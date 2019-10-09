@@ -1,4 +1,7 @@
-# deep-belief-network
+# deep-belief-network - Originally developed by albertbup, [original repo can be found here](https://github.com/albertbup/deep-belief-network)
+
+## Adapted by Jordan Harrod for SFN 2019
+
 A simple, clean, fast Python implementation of Deep Belief Networks based on binary Restricted Boltzmann Machines (RBM), built upon NumPy and TensorFlow libraries in order to take advantage of GPU computation:
 > Hinton, Geoffrey E., Simon Osindero, and Yee-Whye Teh. "A fast learning algorithm for deep belief nets." Neural computation 18.7 (2006): 1527-1554.
 
