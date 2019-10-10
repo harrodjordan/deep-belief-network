@@ -323,6 +323,8 @@ class AbstractSupervisedDBN(BaseEstimator, BaseModel):
         self.dropout_p = dropout_p
         self.p = 1 - self.dropout_p
         self.verbose = verbose
+        self.error = []
+        self.acc = [] 
 
     def fit(self, X, y=None, pre_train=True):
         """
@@ -423,8 +425,8 @@ class NumPyAbstractSupervisedDBN(AbstractSupervisedDBN):
         :param _labels: array-like, shape = (n_samples, targets)
         :return:
         """
-        if self.verbose:
-            matrix_error = np.zeros([len(_data), self.num_classes])
+        
+        matrix_error = np.zeros([len(_data), self.num_classes])
         num_samples = len(_data)
         accum_delta_W = [np.zeros(rbm.W.shape) for rbm in self.unsupervised_dbn.rbm_layers]
         accum_delta_W.append(np.zeros(self.W.shape))
@@ -464,8 +466,10 @@ class NumPyAbstractSupervisedDBN(AbstractSupervisedDBN):
                     accum_delta_W[layer] / self.batch_size)
                 self.b -= self.learning_rate * (accum_delta_bias[layer] / self.batch_size)
 
+            error = np.mean(np.sum(matrix_error, 1))
+            self.error = np.append(self.error, error)
+
             if self.verbose:
-                error = np.mean(np.sum(matrix_error, 1))
                 print(">> Epoch %d finished \tANN training loss %f" % (iteration, error))
 
     def _backpropagation(self, input_vector, label):
