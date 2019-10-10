@@ -1,4 +1,4 @@
-# deep-belief-network - Originally developed by albertbup, [original repo can be found here](https://github.com/albertbup/deep-belief-network)
+Originally developed by albertbup, [original repo here](https://github.com/albertbup/deep-belief-network)
 
 ## Adapted by Jordan Harrod for SFN 2019
 
